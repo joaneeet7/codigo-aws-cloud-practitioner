@@ -1,7 +1,7 @@
 ---
 Parameters:
   SecurityGroupDescription:
-    Description: Security Group Description
+    Description: Descripcion del grupo de seguridad
     Type: String
 
 Resources:
@@ -9,30 +9,30 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       AvailabilityZone: us-east-1a
-      ImageId: ami-0c614dee691cbbf37
-      InstanceType: t2.micro
+      ImageId: ami-0453ec754f44f9a4a
+      InstanceType: t3.micro
       SecurityGroups:
         - !Ref SSHSecurityGroup
         - !Ref ServerSecurityGroup
 
-
+  # an elastic IP for our instance
   MyEIP:
     Type: AWS::EC2::EIP
     Properties:
       InstanceId: !Ref MyInstance
 
-
+  # Nuestro grupo de seguridad de EC2
   SSHSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Enable SSH access via port 22
+      GroupDescription: Permite acceso SSH por el puerto 22
       SecurityGroupIngress:
         - CidrIp: 0.0.0.0/0
           FromPort: 22
           IpProtocol: tcp
           ToPort: 22
 
-
+  # Nuestro segundo grupo de seguridad de EC2
   ServerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -49,5 +49,5 @@ Resources:
 
 Outputs:
   ElasticIP:
-    Description: Elastic IP Value
+    Description: Valor de la IP elastica
     Value: !Ref MyEIP
