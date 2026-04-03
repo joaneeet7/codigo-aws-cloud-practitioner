@@ -15,7 +15,7 @@ Resources:
         - !Ref SSHSecurityGroup
         - !Ref ServerSecurityGroup
 
-  # an elastic IP for our instance
+  # IP elastica para nuestra instancia
   MyEIP:
     Type: AWS::EC2::EIP
     Properties:
